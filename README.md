@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Lab 9 - HPC
 ================
 
@@ -189,3 +190,6 @@ Rscript --vanilla -e 'rmarkdown::render("[full-path-to-your-Rmd-file.Rmd]")' &
 
 Where `[full-path-to-your-Rmd-file.Rmd]` should be replace with the full
 path to
+=======
+
+>>>>>>> dc4073c29c819c1be0b40411e6c54b49964134b9
