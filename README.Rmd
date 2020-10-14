@@ -60,7 +60,6 @@ microbenchmark::microbenchmark(
 )
 ```
 
-The two functions were compared with each other. The funalt() function completed the job quicker than the fun1() function, and it was around 16.5 times faster. 
 
 2.  Find the column max (hint: Checkout the function `max.col()`).
 
@@ -75,13 +74,17 @@ fun2 <- function(x) {
 }
 
 fun2alt <- function(x) {
-  # YOUR CODE HERE
+  x[
+    cbind(
+      max.col(t(x)),
+      1:ncol(x))
+    ]
 }
 
 # Benchmarking
 microbenchmark::microbenchmark(
-  fun2(),
-  fun2alt()
+  fun2(x),
+  fun2alt(x),unit = "relative"
 )
 ```
 

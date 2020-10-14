@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Lab 9 - HPC
 ================
 
@@ -66,13 +65,9 @@ microbenchmark::microbenchmark(
 ```
 
     ## Unit: relative
-    ##       expr      min     lq     mean  median       uq       max neval
-    ##     fun1() 15.82791 22.917 3.417679 23.5583 23.40165 0.2342084   100
-    ##  fun1alt()  1.00000  1.000 1.000000  1.0000  1.00000 1.0000000   100
-
-The two functions were compared with each other. The funalt() function
-completed the job quicker than the fun1() function, and it was around
-16.5 times faster.
+    ##       expr     min       lq     mean   median       uq      max neval
+    ##     fun1() 16.5782 22.29259 17.93444 23.11032 23.99856 10.52829   100
+    ##  fun1alt()  1.0000  1.00000  1.00000  1.00000  1.00000  1.00000   100
 
 2.  Find the column max (hint: Checkout the function `max.col()`).
 
@@ -89,13 +84,17 @@ fun2 <- function(x) {
 }
 
 fun2alt <- function(x) {
-  # YOUR CODE HERE
+  x[
+    cbind(
+      max.col(t(x)),
+      1:ncol(x))
+    ]
 }
 
 # Benchmarking
 microbenchmark::microbenchmark(
-  fun2(),
-  fun2alt()
+  fun2(x),
+  fun2alt(x),unit = "relative"
 )
 ```
 
@@ -190,6 +189,3 @@ Rscript --vanilla -e 'rmarkdown::render("[full-path-to-your-Rmd-file.Rmd]")' &
 
 Where `[full-path-to-your-Rmd-file.Rmd]` should be replace with the full
 path to
-=======
-
->>>>>>> dc4073c29c819c1be0b40411e6c54b49964134b9
