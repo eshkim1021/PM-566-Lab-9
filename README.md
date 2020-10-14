@@ -65,9 +65,9 @@ microbenchmark::microbenchmark(
 ```
 
     ## Unit: relative
-    ##       expr      min       lq     mean   median      uq      max neval
-    ##     fun1() 18.76887 24.43028 15.47798 27.34938 22.5495 7.473122   100
-    ##  fun1alt()  1.00000  1.00000  1.00000  1.00000  1.0000 1.000000   100
+    ##       expr      min       lq     mean   median       uq      max neval
+    ##     fun1() 17.57277 22.98246 14.51517 23.24867 23.42466 7.813917   100
+    ##  fun1alt()  1.00000  1.00000  1.00000  1.00000  1.00000 1.000000   100
 
 2.  Find the column max (hint: Checkout the function `max.col()`).
 
@@ -92,16 +92,15 @@ fun2alt <- function(x) {
 }
 
 # Benchmarking
-microbenchmark::microbenchmark(
+ans_bench <-microbenchmark::microbenchmark(
   fun2(x),
   fun2alt(x),unit = "relative"
 )
+
+plot(ans_bench)
 ```
 
-    ## Unit: relative
-    ##        expr      min       lq    mean   median       uq      max neval
-    ##     fun2(x) 10.01942 9.573689 7.27278 8.580453 7.419032 1.048826   100
-    ##  fun2alt(x)  1.00000 1.000000 1.00000 1.000000 1.000000 1.000000   100
+![](README_files/figure-gfm/p2-fun2-1.png)<!-- -->
 
 ## Problem 3: Parallelize everyhing
 
@@ -201,14 +200,17 @@ system.time(my_boot(dat = data.frame(x, y), my_stat, R = 4000, ncpus = 1L))
 ```
 
     ##    user  system elapsed 
-    ##    0.14    0.01    5.34
+    ##    0.16    0.03    5.05
 
 ``` r
-system.time(my_boot(dat = data.frame(x, y), my_stat, R = 4000, ncpus = 2L))
+system.time(my_boot(dat = data.frame(x, y), my_stat, R = 4000, ncpus = 4L))
 ```
 
     ##    user  system elapsed 
-    ##    0.15    0.02    3.38
+    ##    0.19    0.12    2.31
+
+Once the number of ncpus is raised, the time it takes for the jobs to
+complete is faster.
 
 ## Problem 4: Compile this markdown document using Rscript
 

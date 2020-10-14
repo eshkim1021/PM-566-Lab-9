@@ -82,10 +82,13 @@ fun2alt <- function(x) {
 }
 
 # Benchmarking
-microbenchmark::microbenchmark(
+ans_bench <-microbenchmark::microbenchmark(
   fun2(x),
   fun2alt(x),unit = "relative"
 )
+
+plot(ans_bench)
+
 ```
 
 ## Problem 3: Parallelize everyhing
@@ -163,8 +166,9 @@ ans0
 
 ```{r benchmark-problem3, eval = TRUE}
 system.time(my_boot(dat = data.frame(x, y), my_stat, R = 4000, ncpus = 1L))
-system.time(my_boot(dat = data.frame(x, y), my_stat, R = 4000, ncpus = 2L))
+system.time(my_boot(dat = data.frame(x, y), my_stat, R = 4000, ncpus = 4L))
 ```
+Once the number of ncpus is raised, the time it takes for the jobs to complete is faster. 
 
 ## Problem 4: Compile this markdown document using Rscript
 
