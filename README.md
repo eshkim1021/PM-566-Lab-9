@@ -65,9 +65,9 @@ microbenchmark::microbenchmark(
 ```
 
     ## Unit: relative
-    ##       expr     min       lq     mean   median       uq      max neval
-    ##     fun1() 16.5782 22.29259 17.93444 23.11032 23.99856 10.52829   100
-    ##  fun1alt()  1.0000  1.00000  1.00000  1.00000  1.00000  1.00000   100
+    ##       expr      min       lq     mean   median       uq      max neval
+    ##     fun1() 16.42786 22.13843 15.08456 24.60721 24.56962 7.238291   100
+    ##  fun1alt()  1.00000  1.00000  1.00000  1.00000  1.00000 1.000000   100
 
 2.  Find the column max (hint: Checkout the function `max.col()`).
 
@@ -97,6 +97,11 @@ microbenchmark::microbenchmark(
   fun2alt(x),unit = "relative"
 )
 ```
+
+    ## Unit: relative
+    ##        expr      min      lq     mean   median       uq      max neval
+    ##     fun2(x) 9.618182 9.09282 7.284242 8.588823 8.755676 1.016222   100
+    ##  fun2alt(x) 1.000000 1.00000 1.000000 1.000000 1.000000 1.000000   100
 
 ## Problem 3: Parallelize everyhing
 
