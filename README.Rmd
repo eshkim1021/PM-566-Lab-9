@@ -1,6 +1,6 @@
 ---
 title: "Lab 9 - HPC"
-output: tufte::tufte_html
+output: github_document
 link-citations: yes
 ---
 
@@ -10,13 +10,28 @@ In this lab, you are expected to learn/put in practice the following skills:
 
 - Evaluate whether a problem can be parallelized or not.
 - Practice with the parallel package.
+- USe Rscript to submit jobs 
 - Practice your skills with Git.
 
+```{r}
+library(microbenchmark)
+```
 ## Problem 1: Think
 
 Give yourself a few minutes to think about what you just learned. List three
 examples of problems that you believe may be solved using parallel computing,
 and check for packages on the HPC CRAN task view that may be related to it.
+
+Parallel Computing can be useful in: 
+
+-Stimulating the spread of environmental pollutants (package: maanova)
+
+-Doing linear and logistic regressions of large quantities of health data to improve treatment (package: biglm)
+
+-Cross-validation in machine learning (package: carat)
+
+-Bootstrapping (package: boot)
+
 
 ## Problem 2: Before you
 
@@ -26,23 +41,26 @@ parallel:
 1. This function generates a `n x k` dataset with all its entries distributed
 poission with mean `lambda`.
 
-```{r p2-fun1, eval = FALSE}
+```{r p2-fun1, eval =TRUE}
 fun1 <- function(n = 100, k = 4, lambda = 4) {
   x <- NULL
   for (i in 1:n)
     x <- rbind(x, rpois(k, lambda))
+  x
 }
 
 fun1alt <- function(n = 100, k = 4, lambda = 4) {
-  # YOUR CODE HERE
+   matrix(rpois(n*k,lambda),ncol = k)
 }
 
 # Benchmarking
 microbenchmark::microbenchmark(
   fun1(),
-  fun1alt()
+  fun1alt(),unit = "relative"
 )
 ```
+
+The two functions were compared with each other. The funalt() function completed the job quicker than the fun1() function, and it was around 16.5 times faster. 
 
 2.  Find the column max (hint: Checkout the function `max.col()`).
 
